@@ -763,7 +763,7 @@ class Chrome(selenium.webdriver.chrome.webdriver.WebDriver):
 
     def quit(self):
         try:
-            self.service.process.kill()
+            self.service.stop()
             self.command_executor.close()
             logger.debug("webdriver process ended")
         except (AttributeError, RuntimeError, OSError):
@@ -838,7 +838,7 @@ class Chrome(selenium.webdriver.chrome.webdriver.WebDriver):
 
     def __del__(self):
         try:
-            self.service.process.kill()
+            self.service.stop()
             self.command_executor.close()
         except:  # noqa
             pass
